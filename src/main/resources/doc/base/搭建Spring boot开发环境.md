@@ -1,5 +1,4 @@
 ### 新建spring initializr项目
-! [新建项目](src\main\java\org\ph\cloud\doc\base\img\create_project.jpg)
 ### 创建一个测试controller
 ```
 /**
@@ -39,7 +38,7 @@ class CloudApplicationTests {
 ```
 - @RunWith: 引入spring对Junit4的支持
 - @WebAppConfiguration: 开启Web应用配置，模拟ServletContext<br>
-**注意：spring boot2.x中使用的Junit5.x，@Before注解是无效的，需要使用@BeforeEach**
+**注意：spring boot2.1.3.RELEASE中使用的Junit4.12，@Before注解是无效的，需要使用@BeforeEach**
 ### 运行项目
 在项目中添加了spring-boot的maven插件，所以项目可以通过`mvn spring-boot:run`命令启动。
 ```
