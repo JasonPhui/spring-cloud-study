@@ -1,0 +1,58 @@
+### 新建spring initializr项目
+! [src\main\java\org\ph\cloud\doc\base\img\create_project.jpg]
+### 创建一个测试controller
+'''
+/**
+ * @Author ph
+ * @Date 2020/8/7
+ * @Description 测试controller
+ * @Version V1.0
+ */
+@RestController
+public class AppController {
+
+    @RequestMapping("/")
+    public String home() {
+        return "hello world";
+    }
+}
+'''
+### 编写测试用例
+'''
+@SpringBootTest
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+class CloudApplicationTests {
+    private MockMvc mockMvc;
+
+    @BeforeEach
+    public void setUp() {
+        mockMvc = MockMvcBuilders.standaloneSetup(new AppController()).build();
+    }
+
+    @Test
+    void hello() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("http://localhost:8080").accept(MediaType.APPLICATION_JSON));
+    }
+
+}
+'''
+- @RunWith: 引入spring对Junit4的支持
+- @WebAppConfiguration: 开启Web应用配置，模拟ServletContext
+*注意：spring boot2.x中使用的Junit5.x，@Before注解是无效的，需要使用@BeforeEach*
+### 运行项目
+在项目中添加了spring-boot的maven插件，所以项目可以通过mvn spring-boot:run命令启动。
+'''
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.1</version>
+    <configuration>
+        <source>${java.version}</source>
+        <target>${java.version}</target>
+    </configuration>
+</plugin>
+'''
+在浏览器输入http://localhost:8080/即可看到"hello world"的输出结果
+### 部署项目
+通过mvn install命令将项目打包成jar包后即可通过java -jar xxx.jar启动应用
