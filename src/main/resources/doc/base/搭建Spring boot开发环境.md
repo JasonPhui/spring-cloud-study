@@ -66,3 +66,15 @@ class CloudApplicationTests {
     <scope>test</scope>
 </dependency>
 ```
+3. 在IDEA 2020.1.1中启动项目报`java.lang.NoClassDefFoundError: ch/qos/logback/core/spi/LifeCycle`错误，而在IDEA 2020.2.2中不需要以下依赖
+添加logback依赖
+```
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-core</artifactId>
+</dependency>
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+</dependency>
+```
