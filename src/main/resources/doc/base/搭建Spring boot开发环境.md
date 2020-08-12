@@ -66,5 +66,20 @@ class CloudApplicationTests {
     <scope>test</scope>
 </dependency>
 ```
+<<<<<<< HEAD
 2. 编写测试类后maven打包报错，错误信息：`Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1:test (default-test) on project cloud: There are test failures.`
 解决方式：在测试类中添加@Ignore注解。错误原因未知。
+=======
+3. 在IDEA 2020.1.1中启动项目报`java.lang.NoClassDefFoundError: ch/qos/logback/core/spi/LifeCycle`错误，而在IDEA 2020.2.2中不需要以下依赖
+添加logback依赖
+```
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-core</artifactId>
+</dependency>
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+</dependency>
+```
+>>>>>>> 3682aa4556b756c860b97e032bc6ff46ef1c848d
