@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @Ignore
-public class CloudApplicationTests {
+public class RegisterApplicationTests {
     private MockMvc mockMvc;
 
     @BeforeEach
