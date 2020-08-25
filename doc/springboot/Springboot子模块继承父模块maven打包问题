@@ -1,0 +1,39 @@
+在实践spring cloud 的一个简单demo时，需要通过java -jar 的方式启动两个服务注册中心以实现高可用，项目结构是有一个公共依赖的父module，
+作为maven中的parent，在配置了spring boot的打包依赖时，发现产生的jar包并不能以java -jar的形式启动，报没有找到主类清单的错误。父module的
+maven插件如下：
+```
+<build>
+   <plugins>
+       <plugin>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-maven-plugin</artifactId>
+       </plugin>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <version>3.8.1</version>
+           <configuration>
+               <source>${java.version}</source>
+               <target>${java.version}</target>
+           </configuration>
+       </plugin>
+   </plugins>
+</build>
+```
+也就是说在打包时根本没有用到spring boot的maven插件，在度娘的帮助下发现普通spring boot项目是会直接继承于`spring-boot-starter-parent`的，而在
+我的项目中使用的是`<dependencyManagement>`实现依赖的多继承，导致`spring-boot-starter-parent`中配置的`<execution>`属性失效了，将项目中
+父module的插件修改为如下即解决问题：
+```
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>repackage</id>
+            <goals>
+                <goal>repackage</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```

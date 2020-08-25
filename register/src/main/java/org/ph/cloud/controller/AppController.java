@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AppController {
 
-    @RequestMapping("/")
+    @RequestMapping("/app")
     public String home() {
         return "hello world";
     }
