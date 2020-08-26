@@ -1,4 +1,4 @@
-package org.ph.study.client.controller;
+package org.ph.provider.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,17 +7,17 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @author ph
- * @description 消费者控制器
- * @date 2020/8/23
+ * @description 服务提供者同时也可以是服务消费者
+ * @date 2020/8/26
  */
 @RestController
-public class ConsumerController {
+public class ProviderConsumerController {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @RequestMapping("/ribbon-consumer")
-    public String consumer() {
-        return restTemplate.getForEntity("http://cloud-provider/provider/getString", String.class).getBody();
+    @RequestMapping("/provider/consumer")
+    public String providerConsumer() {
+        return restTemplate.getForEntity("http://study-client/getServices", String.class).getBody();
     }
 }
